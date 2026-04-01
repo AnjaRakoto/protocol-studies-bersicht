@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Protocol Studies — Begriffslexikon</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Bebas+Neue&display=swap');
+
+  :root {
+    --bg: #f5f0e8;
+    --ink: #1a1208;
+    --accent1: #b5320a;
+    --accent2: #1a4a6b;
+    --accent3: #4a7a1e;
+    --mid: #7a6a50;
+    --rule: #c8b89a;
+    --card-bg: #faf7f2;
+    --tag-bg: #e8e0d0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'EB Garamond', serif;
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  /* ── HEADER ── */
+  header {
+    padding: 60px 80px 40px;
+    border-bottom: 3px solid var(--ink);
+    position: relative;
+    background: var(--ink);
+    color: var(--bg);
+  }
+  .header-mono {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--rule);
+    margin-bottom: 16px;
+  }
+  header h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 8vw, 110px);
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    color: var(--bg);
+  }
+  header h1 span {
+    color: var(--accent1);
+  }
+  .header-sub {
+    margin-top: 20px;
+    font-size: 15px;
+    font-style: italic;
+    color: #d0c8b8;
+    max-width: 700px;
+  }
+  .source-pills {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+  }
+  .pill {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    padding: 4px 12px;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    color: var(--rule);
+  }
+  .pill.a1 { border-color: var(--accent1); color: var(--accent1); }
+  .pill.a2 { border-color: #5a9ecb; color: #5a9ecb; }
+  .pill.a3 { border-color: #8aba4e; color: #8aba4e; }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--ink);
+    padding: 0 80px;
+    border-bottom: 1px solid #333;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+  }
+  nav a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--rule);
+    text-decoration: none;
+    padding: 14px 18px;
+    border-right: 1px solid #333;
+    white-space: nowrap;
+    transition: color 0.2s, background 0.2s;
+  }
+  nav a:hover { color: var(--bg); background: #333; }
+
+  /* ── MAIN ── */
+  main {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 60px 80px;
+  }
+
+  /* ── SECTION HEADING ── */
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 38px;
+    letter-spacing: 0.04em;
+    margin-bottom: 32px;
+    border-bottom: 2px solid var(--rule);
+    padding-bottom: 12px;
+  }
+
+  /* ── CONCEPT CARDS ── */
+  .concept-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(520px, 1fr));
+    gap: 2px;
+    margin-bottom: 60px;
+  }
+
+  .concept-card {
+    background: var(--card-bg);
+    border: 1px solid var(--rule);
+    padding: 36px 40px 32px;
+    position: relative;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .concept-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 4px 4px 0 var(--rule);
+  }
+
+  .concept-number {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--rule);
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+
+  .concept-de {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0.05em;
+    margin-bottom: 2px;
+    color: var(--ink);
+  }
+  .concept-en {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--mid);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .concept-def {
+    font-size: 15.5px;
+    line-height: 1.75;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+
+  .quote-block {
+    background: var(--tag-bg);
+    border-left: 3px solid var(--accent1);
+    padding: 14px 18px;
+    margin: 16px 0;
+    font-style: italic;
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: #3a2a10;
+  }
+  .quote-block.blue { border-left-color: var(--accent2); }
+  .quote-block.green { border-left-color: var(--accent3); }
+
+  .quote-source {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--mid);
+    letter-spacing: 0.08em;
+    margin-top: 6px;
+    font-style: normal;
+  }
+
+  .distinction-box {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+  .distinction-box strong {
+    color: var(--accent1);
+    font-style: normal;
+  }
+  .distinction-box span.b { color: #5ab0e8; }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 16px;
+  }
+  .tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    background: var(--tag-bg);
+    color: var(--mid);
+    border: 1px solid var(--rule);
+  }
+  .tag.red { background: #f5e0d8; color: var(--accent1); border-color: var(--accent1); }
+  .tag.blue { background: #d8e8f5; color: var(--accent2); border-color: var(--accent2); }
+  .tag.green { background: #e0f0d0; color: var(--accent3); border-color: var(--accent3); }
+
+  /* ── COMPARISON TABLE ── */
+  .comparison-section {
+    margin: 60px 0;
+  }
+
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14.5px;
+    margin-top: 24px;
+  }
+  .compare-table thead tr {
+    background: var(--ink);
+    color: var(--bg);
+  }
+  .compare-table thead th {
+    padding: 14px 20px;
+    text-align: left;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .compare-table thead th:first-child {
+    color: var(--rule);
+  }
+  .compare-table thead th.h-red { color: #ff8060; }
+  .compare-table thead th.h-blue { color: #80c0ff; }
+  .compare-table thead th.h-green { color: #a0d060; }
+
+  .compare-table tbody tr {
+    border-bottom: 1px solid var(--rule);
+  }
+  .compare-table tbody tr:nth-child(even) {
+    background: rgba(200,184,154,0.12);
+  }
+  .compare-table tbody td {
+    padding: 14px 20px;
+    vertical-align: top;
+    line-height: 1.6;
+  }
+  .compare-table tbody td:first-child {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--mid);
+    white-space: nowrap;
+    font-weight: 500;
+  }
+  .compare-table tbody td.highlight {
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  /* ── VIER ELEMENTE ── */
+  .elements-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin: 28px 0 60px;
+  }
+
+  .element-card {
+    padding: 32px 36px;
+    border: 1px solid var(--rule);
+    position: relative;
+  }
+  .element-card:nth-child(1) { background: #f0e8dc; border-top: 4px solid var(--accent1); }
+  .element-card:nth-child(2) { background: #dce8f0; border-top: 4px solid var(--accent2); }
+  .element-card:nth-child(3) { background: #e8f0dc; border-top: 4px solid var(--accent3); }
+  .element-card:nth-child(4) { background: #f0dce8; border-top: 4px solid #8a4a7a; }
+
+  .element-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    opacity: 0.08;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    line-height: 1;
+  }
+  .element-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+  }
+  .element-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--mid);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+  .element-body {
+    font-size: 14.5px;
+    line-height: 1.75;
+  }
+
+  /* ── CHIASM DIAGRAM ── */
+  .chiasm-wrapper {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 48px;
+    margin: 28px 0 60px;
+    display: grid;
+    grid-template-columns: 1fr 280px 1fr;
+    gap: 24px;
+    align-items: center;
+  }
+  .chiasm-side {
+    text-align: center;
+  }
+  .chiasm-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+  .chiasm-label.r { color: var(--accent1); }
+  .chiasm-label.b { color: #80c0ff; }
+  .chiasm-desc {
+    font-size: 13px;
+    color: #b0a090;
+    line-height: 1.5;
+  }
+  .chiasm-center {
+    text-align: center;
+    border: 1px solid #444;
+    padding: 24px;
+  }
+  .chi-symbol {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 80px;
+    color: #444;
+    line-height: 1;
+  }
+  .chiasm-center p {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    color: #666;
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: var(--rule);
+    padding: 32px 80px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    border-top: 3px solid var(--accent1);
+  }
+  footer strong { color: var(--bg); }
+
+  /* ── SECTION DIVIDER ── */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 56px 0 40px;
+  }
+  .divider-line { flex: 1; height: 1px; background: var(--rule); }
+  .divider-text {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--mid);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 900px) {
+    main, header, footer, nav { padding-left: 24px; padding-right: 24px; }
+    .concept-grid, .elements-grid { grid-template-columns: 1fr; }
+    .chiasm-wrapper { grid-template-columns: 1fr; }
+    .compare-table { font-size: 12px; }
+    .compare-table tbody td { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-mono">Protocol Studies · Begriffslexikon · Bennke 2025/2026</div>
+  <h1>PROTOKOLL<br><span>STUDIEN</span></h1>
+  <p class="header-sub">Ausdifferenzierte Definitionen zentraler Begriffe aus drei Texten von Johannes Bennke und Nathan Schneider — mit exakten Zitaten, Seitenangaben und Gegenüberstellungen.</p>
+  <div class="source-pills">
+    <span class="pill a1">① Media Theory of Protocols (2026)</span>
+    <span class="pill a2">② Protocological Governance (2025)</span>
+    <span class="pill a3">③ Medientheorie der Protokolle (2026)</span>
+  </div>
+</header>
+
+<nav>
+  <a href="#protokoll">Protokoll</a>
+  <a href="#vier-elemente">4 Elemente</a>
+  <a href="#souveraenitaet">Souveränität</a>
+  <a href="#entanglement">Entanglement</a>
+  <a href="#capture">Capture</a>
+  <a href="#legalitaet">Legalität/Legitimität</a>
+  <a href="#extitution">Extitution</a>
+  <a href="#vibe">Vibe/Worlding</a>
+  <a href="#chiasm">Chiasm</a>
+  <a href="#vergleich">Vergleich</a>
+</nav>
+
+<main>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- 1. PROTOKOLL — GRUNDDEFINITIONEN         -->
+  <!-- ══════════════════════════════════════════ -->
+  <div id="protokoll" style="padding-top:48px">
+    <div class="section-label">Begriff 01</div>
+    <div class="section-title">Protokoll — Grunddefinitionen im Vergleich</div>
+  </div>
+
+  <div class="concept-grid">
+
+    <div class="concept-card">
+      <div class="concept-number">01 / A</div>
+      <div class="concept-de">Protokoll</div>
+      <div class="concept-en">Working Definition · Bennke &amp; Schneider ①②</div>
+      <div class="concept-def">
+        Ausgangspunkt ist die Etymologie: griech. <em>protos</em> (erstes) + <em>kóllon</em> (Leim) → das aufgeleimte obere Stück eines Papyrus, das Authentizität des Absenders verbürgte.
+      </div>
+      <div class="quote-block">
+        „A protocol is simply a pattern that organizes modes of interaction among agents."
+        <div class="quote-source">② Protocological Governance, S. 16 (Bennke &amp; Schneider 2025)</div>
+      </div>
+      <div class="quote-block blue">
+        „In their various forms, protocols are ultimately practices, text forms, and media that serve to select and document, structure, and technify a wide variety of modes of action, language, and communication."
+        <div class="quote-source">① Media Theory of Protocols, S. 2 — zit. Plener et al. 2023</div>
+      </div>
+      <div class="tags">
+        <span class="tag">Muster</span>
+        <span class="tag">Vermittlung</span>
+        <span class="tag red">Kontrolle</span>
+        <span class="tag blue">Emergenz</span>
+      </div>
+    </div>
+
+    <div class="concept-card">
+      <div class="concept-number">01 / B</div>
+      <div class="concept-de">Protokoll bei Galloway</div>
+      <div class="concept-en">Protocological Control · Galloway 2006</div>
+      <div class="concept-def">
+        Galloways einflussreiche Definition betont das Protokoll als Kontrollmacht — unabhängig von Institutionen, Staat und Kapital, aber eng mit allen dreien verknüpft. Es ist das dritte essentielle Element der Netzwerkgeschichte neben PC und Internet.
+      </div>
+      <div class="quote-block">
+        „Protocol is a type of controlling logic that operates outside institutional, governmental, and corporate power, although it has important ties to all three."
+        <div class="quote-source">① S. 3 — Galloway 2006, S. 122 (Hervorhebung im Original)</div>
+      </div>
+      <div class="quote-block">
+        „Protocols are a set of recommendations and rules that outline specific technical standards […] and a technique for achieving voluntary regulation within a contingent environment."
+        <div class="quote-source">② S. 18 — Galloway 2006, S. 7–8</div>
+      </div>
+      <div class="distinction-box">
+        <strong>Galloways Grenze:</strong> Sein Ansatz verschleiert emanzipatorische Dimensionen und reduziert menschliches Handeln auf Feedback-Schleifen. Bennke: die Epistemologie muss früher ansetzen als die kybernetischen Maschinen der 1940er.
+      </div>
+      <div class="tags">
+        <span class="tag red">Kontrolle</span>
+        <span class="tag">TCP/IP</span>
+        <span class="tag">Foucault/Deleuze</span>
+      </div>
+    </div>
+
+    <div class="concept-card">
+      <div class="concept-number">01 / C</div>
+      <div class="concept-de">Das Protokologische</div>
+      <div class="concept-en">The Protocological · Bennke &amp; Schneider ②</div>
+      <div class="concept-def">
+        Nicht jedes Protokoll ist <em>protokologisch</em>. Das Protokologische beschreibt den Zustand, in dem ein Protokoll eine eigene Mediäalität — eigene Logik, Operationen, Funktionalität — entfaltet, die sich keinem einzelnen Akteur unterordnet.
+      </div>
+      <div class="quote-block blue">
+        „We understand the protocological as the condition in which a protocol takes on a life of its own, so to speak, enacting its mediality. […] The protocological refers to an intrinsic logic of protocols that arises as soon as protocols enact mediality across heteronomous domains."
+        <div class="quote-source">② S. 20</div>
+      </div>
+      <div class="distinction-box">
+        <strong>Nicht protokologisch:</strong> Ein firmeninternes Dokumentationsprotokoll, das vollständig der Firmenlogik untergeordnet ist.<br><br>
+        <span class="b">Protokologisch:</span> Ein über viele Firmen hinweg entwickeltes Protokoll, das keiner einzelnen Entität untersteht.
+      </div>
+      <div class="tags">
+        <span class="tag blue">Mediäalität</span>
+        <span class="tag">Heteronomie</span>
+        <span class="tag green">Dezentralisierung</span>
+      </div>
+    </div>
+
+    <div class="concept-card">
+      <div class="concept-number">01 / D</div>
+      <div class="concept-de">Grenz­objekt</div>
+      <div class="concept-en">Boundary Object · Star &amp; Griesemer ①</div>
+      <div class="concept-def">
+        Protokolle ähneln Grenzobjekten aus der Organisationssoziologie: Sie sind gleichzeitig adaptierbar und stabil genug, ihre Identität über verschiedene Disziplinen und Verwendungen hinweg zu erhalten. Das Grenzobjekt koordiniert Wissen und Handeln zwischen verschiedenen sozialen Welten.
+      </div>
+      <div class="quote-block green">
+        „Protocols are boundary objects insofar as they coordinate knowledge and action between different social worlds and enable cooperation even where there are differences and dissent."
+        <div class="quote-source">① S. 23</div>
+      </div>
+      <div class="distinction-box">
+        <strong>Unterschied zum Grenzobjekt:</strong> Das Protokoll bleibt nicht lokal und situational, sondern ist <span class="b">translokal</span> und entwickelt eine affektiv bindende Kraft, die eine (dezentralisierte) Souveränität bildet.
+      </div>
+      <div class="tags">
+        <span class="tag">Star/Griesemer 1989</span>
+        <span class="tag">Kooperation</span>
+        <span class="tag red">Translokal</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- 2. VIER ELEMENTE                         -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="divider"><div class="divider-line"></div><div class="divider-text">Kernmodell</div><div class="divider-line"></div></div>
+
+  <div id="vier-elemente">
+    <div class="section-label">Begriff 02</div>
+    <div class="section-title">Die vier Elemente des Protokolls</div>
+    <p style="font-size:15px; color:var(--mid); margin-bottom:24px; max-width:700px;">
+      Bennke schlägt eine medientheoretische Systematisierung vor, die den Widerspruch zwischen Stabilisierung und Anpassung aufgreift.
+    </p>
+  </div>
+
+  <div class="elements-grid">
+
+    <div class="element-card">
+      <div class="element-num">1</div>
+      <div class="element-title">Operatives Element</div>
+      <div class="element-sub">Kulturtechnik des Rechts · Authentication</div>
+      <div class="element-body">
+        Stempeln, Signieren, Siegeln als grundlegende Operationen. Protokolle sind <em>Medien der Verifikation</em>: Sie beglaubigen, wer mit wem kommuniziert. In digitalen Netzwerken: QR-Codes, Zero-Knowledge Proofs, Smart Contracts, biometrische Sensoren.
+        <div class="quote-block" style="margin-top:14px">
+          „Protocols are based on the basic operations of stamping, signing, and sealing and can thus be understood as a cultural technique of law."
+          <div class="quote-source">① S. 10</div>
+        </div>
+        <div class="tags" style="margin-top:10px">
+          <span class="tag red">Authentifizierung</span>
+          <span class="tag">Kulturtechnik</span>
+          <span class="tag">Grenzobjekt</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="element-card">
+      <div class="element-num">2</div>
+      <div class="element-title">Regelbasiertes Element</div>
+      <div class="element-sub">Legalität · Legitimität · Alegality</div>
+      <div class="element-body">
+        Das Protokoll unterscheidet zwischen <em>Legalität</em> (formale Regelkonformität), <em>Legitimität</em> (normative Akzeptanz) und <em>Alegality</em> (jenseits des bestehenden Rechtssystems). Protokolle sind performativ: sie <em>tun</em>, was sie sagen — und können neue Standards setzen.
+        <div class="quote-block blue" style="margin-top:14px">
+          „Alegality exists outside of dominant legal systems and processes of law formation […] and is thus an expression of a certain foreignness."
+          <div class="quote-source">① S. 13</div>
+        </div>
+        <div class="tags" style="margin-top:10px">
+          <span class="tag blue">Legitimität</span>
+          <span class="tag">Performativität</span>
+          <span class="tag red">Alegality</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="element-card">
+      <div class="element-num">3</div>
+      <div class="element-title">Extitutions­element</div>
+      <div class="element-sub">Choreografie zwischen Notation &amp; Aufführung</div>
+      <div class="element-body">
+        Das Informelle, das außerhalb von Institutionen liegt. Choreografie als analytisches Konzept: Protokolle haben — wie Tanz — einen geschriebenen (Notation) und einen körperlichen, performativen Teil (Aufführung). Macht wird in diese Choreografie eingeschrieben.
+        <div class="quote-block green" style="margin-top:14px">
+          „Understanding protocols choreographically makes it possible to analyze the production and control techniques that integrate the human body spatially and temporally."
+          <div class="quote-source">① S. 16</div>
+        </div>
+        <div class="tags" style="margin-top:10px">
+          <span class="tag green">Extitution</span>
+          <span class="tag">Choreografie</span>
+          <span class="tag">Körper</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="element-card">
+      <div class="element-num">4</div>
+      <div class="element-title">Weltbildendes Element</div>
+      <div class="element-sub">Vibe · Worlding · Affektive Bindung</div>
+      <div class="element-body">
+        Was sorgt dafür, dass ein Protokoll adoptiert wird? Para-Protokoll-Praktiken (Memes, Foren, Events), gemeinsame Atmosphären und affektive Bindungen. Protokolle schaffen Welten und sterben, wenn diese Welten aufhören zu existieren.
+        <div class="quote-block" style="margin-top:14px; border-left-color: #8a4a7a">
+          „[A] protocol system dies when people stop performing supportive protocol actions in relation to it."
+          <div class="quote-source">① S. 16 — Walch 2023</div>
+        </div>
+        <div class="tags" style="margin-top:10px">
+          <span class="tag">Vibe</span>
+          <span class="tag">Worlding</span>
+          <span class="tag red">Affekt</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- 3. SOUVERÄNITÄT                          -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="divider"><div class="divider-line"></div><div class="divider-text">Machtbegriffe</div><div class="divider-line"></div></div>
+
+  <div id="souveraenitaet">
+    <div class="section-label">Begriff 03</div>
+    <div class="section-title">Souveränität — drei Dimensionen</div>
+  </div>
+
+  <div class="concept-grid">
+
+    <div class="concept-card">
+      <div class="concept-number">03 / A</div>
+      <div class="concept-de">Protokol­logische Souveränität</div>
+      <div class="concept-en">Protocological Sovereignty · ②</div>
+      <div class="concept-def">
+        Souveränität wird vom Nationalstaat entkoppelt. Ein Protokoll ist souverän in dem Maße, in dem seine Logik sich keinem einzelnen Akteur unterordnet. Souveränität als Widerstandskapazität gegen <em>Capture</em>.
+      </div>
+      <div class="quote-block blue">
+        „Protocological governance occurs when protocols themselves become sites of sovereignty, governing according to a logic not reducible to any of the entities entangled with them."
+        <div class="quote-source">② S. 16</div>
+      </div>
+      <div class="distinction-box">
+        <strong>Contrast:</strong> Staatliche Souveränität = Gewaltmonopol über Territorium (Weber).<br>
+        <span class="b">Protokologische Souveränität</span> = Widerstand gegen Unterwerfung durch externe Kraft, basierend auf freiwilligen Vereinbarungen.
+      </div>
+    </div>
+
+    <div class="concept-card">
+      <div class="concept-number">03 / B</div>
+      <div class="concept-de">Indigene Souveränität</div>
+      <div class="concept-en">Cultural Sovereignty · Deloria ②</div>
+      <div class="concept-def">
+        Vine Deloria Jr. trennt kulturelle von politischer Souveränität. Für ihn besteht Souveränität mehr in kultureller Integrität als in politischer Macht. Diese Perspektive ist für Protokolle zentral, weil sie Praktiken der Pflege und Aufrechterhaltung betont.
+      </div>
+      <div class="quote-block green">
+        „Sovereignty can be said to consist more of continued cultural integrity than of political powers and to the degree that a nation loses its sense of cultural identity, to that degree it suffers a loss of sovereignty."
+        <div class="quote-source">② S. 22 — Deloria 1997, S. 113</div>
+      </div>
+      <div class="quote-block green">
+        „Protocol can be understood in Indigenous contexts generally as guidelines for initiating, maintaining, and evolving relationships. These can be relationships with other humans, and they can also be relationships with non-humans such as animals, rocks, and wind."
+        <div class="quote-source">① S. 5 — Lewis 2020, S. 7</div>
+      </div>
+    </div>
+
+    <div class="concept-card">
+      <div class="concept-number">03 / C</div>
+      <div class="concept-de">Digitale Souveränität</div>
+      <div class="concept-en">Digital Sovereignty · ①②</div>
+      <div class="concept-def">
+        Im Kontext von Plattformkapitalismus und Web3: Datenschutz, Privatsphäre, Dekolonialisierung von Protokollen. Digitale Souveränität als «felt belonging» — nicht nur rationale Medienkompetenz, sondern affektive Zugehörigkeit.
+      </div>
+      <div class="quote-block">
+        „Acting with digital sovereignty therefore means not only strengthening one's judgment and media literacy, but also becomes a question of 'felt belonging'."
+        <div class="quote-source">① S. 18</div>
+      </div>
+      <div class="tags">
+        <span class="tag red">Felt Belonging</span>
+        <span class="tag blue">Web3</span>
+        <span class="tag">Dekolonialisierung</span>
+        <span class="tag">DSA/EU</span>
+      </div>
+    </div>
+
+    <div class="concept-card">
+      <div class="concept-number">03 / D</div>
+      <div class="concept-de">Selbst­souveränität</div>
+      <div class="concept-en">Self-Sovereignty · Web3 ②</div>
+      <div class="concept-def">
+        In Web3-Diskursen: die Kapazität von Individuen, ihre Identität und Ressourcen ohne staatliche oder korporative Lizenz zu verwalten. «Governance Minimization» (Ehrsam) und «Credible Neutrality» (Buterin): Protokolle sollen so wenig menschliche Intervention wie möglich zulassen.
+      </div>
+      <div class="quote-block blue">
+        „Self-sovereignty involves the capacity of individual people to manage their identity, and by extension the resources they claim to possess, in a manner that does not require the license of governments or corporations."
+        <div class="quote-source">② S. 23</div>
+      </div>
+      <div class="distinction-box">
+        <strong>Grenze:</strong> Reine Selbst-Souveränität riskiert <em>Autopoiesis</em> — sinnlos, wenn niemand das Protokoll für internationales Reisen, Gesundheit oder Kredit akzeptiert.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- 4. ENTANGLEMENT                          -->
+  <!-- ══════════════════════════════════════════ -->
+  <div id="entanglement">
+    <div class="section-label">Begriff 04</div>
+    <div class="section-title">Entanglement — Verflechtung</div>
+  </div>
+
+  <div class="concept-grid">
+    <div class="concept-card">
+      <div class="concept-number">04</div>
+      <div class="concept-de">Entanglement</div>
+      <div class="concept-en">Mediated Entanglement · ②</div>
+      <div class="concept-def">
+        Gegenseitig konstitutive Relationen in protokologischen Performances. Anleihe bei der Quantenmechanik und Medienanthropologie: Relationen existieren <em>vor</em> ihren Gliedern. Entanglement ist Voraussetzung für Protokoll-Souveränität, aber auch Risikovektor für Capture.
+      </div>
+      <div class="quote-block blue">
+        „We understand entanglement as describing relations that are mutually constitutive in protocological performances. […] 'relations between human existences, experiences and media, nature, or technology exist prior to their distinction and differentiation. The relations precede the relata.'"
+        <div class="quote-source">② S. 24 — Voss, Engell &amp; Othold 2023, S. 2</div>
+      </div>
+      <div class="quote-block blue">
+        „Unless participants validate a protocol by entangling themselves through their adoption of it, it remains an unperformed script, an empty abstraction."
+        <div class="quote-source">② S. 24</div>
+      </div>
+      <div class="distinction-box">
+        <strong>Entanglement ≠ bloße Mediation:</strong> Mediation = Übermittlung von A nach B. <span class="b">Mediäalität</span> = spezifische Logik eines Mediums. Entanglement = konstituierende Wechselwirkung, die Teilnehmer und Protokoll gleichzeitig formt.
+      </div>
+      <div class="tags">
+        <span class="tag blue">Relationalität</span>
+        <span class="tag">Medienanthropologie</span>
+        <span class="tag">Sol LeWitt</span>
+        <span class="tag">Quantenmechanik</span>
+      </div>
+    </div>
+
+    <div class="concept-card">
+      <div class="concept-number">04 / B</div>
+      <div class="concept-de">Performativität</div>
+      <div class="concept-en">Performativity · Austin / Krämer ①②</div>
+      <div class="concept-def">
+        Protokolle sind Speech Acts: sie vollbringen etwas, indem sie ausgeführt werden. Drei Dimensionen der Performativität bei Bennke: (1) <em>Ausführen</em> (operativer Akt), (2) <em>Setzen</em> (neuer Standard), (3) <em>Verwickeln</em> (Entanglement zwischen Körpern, Maschinen, Infrastrukturen).
+      </div>
+      <div class="quote-block">
+        „Performativity denotes a kind of surplus production or excess. This excess arises through the connection of heterogeneous areas – for example, in the transfer of an abstract pattern of rules by a participant to its situated realization."
+        <div class="quote-source">② S. 19</div>
+      </div>
+      <div class="quote-block">
+        „Protocols are therefore performative not only because they carry out instructions for action […]. They are also performative because they are situated and generate new forms of action."
+        <div class="quote-source">① S. 14</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- 5. CAPTURE                               -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="divider"><div class="divider-line"></div><div class="divider-text">Machtdynamiken</div><div class="divider-line"></div></div>
+
+  <div id="capture">
+    <div class="section-label">Begriff 05</div>
+    <div class="section-title">Capture — Vereinnahmung</div>
+  </div>
+
+  <div class="concept-grid">
+    <div class="concept-card">
+      <div class="concept-number">05</div>
+      <div class="concept-de">Capture</div>
+      <div class="concept-en">Protocol Capture · ②</div>
+      <div class="concept-def">
+        Weiter gefasst als klassische «regulatory capture»: Wenn eine Entität die Kapazität zur Selbstregierung an eine andere abgibt. Das Protokoll verliert seine souveräne Logik und wird zum bloßen Instrument fremder Interessen.
+      </div>
+      <div class="quote-block">
+        „Capture is when one entity cedes its capacity to self-govern to another entity. When capture occurs, crucial characteristics of the captured entity change. Its former sovereign actions become mere expedient practices on behalf of the capturing agent."
+        <div class="quote-source">② S. 25</div>
+      </div>
+      <div class="distinction-box">
+        <strong>Beispiel E-Mail (SMTP):</strong> Offenes Protokoll — keine einzelne Institution kontrolliert es. ABER: Google, Microsoft, Yandex kontrollieren große Teile des E-Mail-Traffics durch komfortable UIs → <span class="b">de facto Capture</span> trotz offener Spezifikation.
+        <br><br>
+        <strong>Summer of Protocols:</strong> Ein Protokoll muss „sufficiently defensible" gegen „capture by particular groups, endemic exploitation by hostile parasitic elements, cronyism, 'gaming', runaway extraction" sein.
+        <div style="font-family: 'IBM Plex Mono'; font-size: 10px; color: #888; margin-top: 6px;">② S. 25 — Rao et al. 2023</div>
+      </div>
+      <div class="tags">
+        <span class="tag red">Vereinnahmung</span>
+        <span class="tag">Regulatory Capture</span>
+        <span class="tag blue">Dezentralisierung</span>
+        <span class="tag">Web3</span>
+      </div>
+    </div>
+
+    <div class="concept-card">
+      <div class="concept-number">05 / B</div>
+      <div class="concept-de">Widerstand &amp; Flucht</div>
+      <div class="concept-en">Resistance Practices · ①②</div>
+      <div class="concept-def">
+        Protokolle können andere Protokolle crashen, hacken, suspendieren oder durch alternative Praktiken umgehen. Historische Beispiele: Franziskaner-Bewegung (Armuts-Protokoll vs. kirchliche Eigentumslogik); Indigener Synkretismus (koloniale Capture + Erhalt eigener Souveränität).
+      </div>
+      <div class="quote-block green">
+        „Protocols can crash, hack, or suspend other protocols, or they can avoid control altogether through practices that avoid protocol-codified forms of communication."
+        <div class="quote-source">② S. 21 — Galloway, Thacker &amp; Wark 2014</div>
+      </div>
+      <div class="quote-block green">
+        „Contemporary protocols are therefore directed against everything that contributes to the sluggish 'homogeneity of linear time.' They introduce temporality into the continuous flow of time, thereby contributing to the 'deformalization of time.'"
+        <div class="quote-source">① S. 22</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- 6. LEGALITÄT / LEGITIMITÄT / ALEGALITY   -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="divider"><div class="divider-line"></div><div class="divider-text">Rechtsdimensionen</div><div class="divider-line"></div></div>
+
+  <div id="legalitaet">
+    <div class="section-label">Begriff 06</div>
+    <div class="section-title">Legalität · Legitimität · Alegality</div>
+  </div>
+
+  <div class="concept-grid">
+
+    <div class="concept-card">
+      <div class="concept-number">06 / A</div>
+      <div class="concept-de">Legalität</div>
+      <div class="concept-en">Legality · formal-technical ①</div>
+      <div class="concept-def">Formale und prozedurale Dimension des Rechts. Normen auf Basis bestehender Autorität, vorhersehbar und befolgt. «Legal» = Regelkonformität, unabhängig davon, ob die Regeln als gerecht empfunden werden. Legalität = Ausdruck einer souveränen Entscheidung (Dyzenhaus 1997).</div>
+      <div class="quote-block">
+        „Legality refers to the formal and procedural dimension of law: it refers to norms that are based on existing authority, are predictable, and are followed."
+        <div class="quote-source">① S. 11</div>
+      </div>
+      <div class="tags"><span class="tag">Dyzenhaus 1997</span><span class="tag">Souveränentscheidung</span></div>
+    </div>
+
+    <div class="concept-card">
+      <div class="concept-number">06 / B</div>
+      <div class="concept-de">Legitimität</div>
+      <div class="concept-en">Legitimacy · normative ①</div>
+      <div class="concept-def">
+        Normativer Anspruch von Verhaltensregeln. Drei Formen nach Schmidt (2020): <em>Input-Legitimität</em> (Bürgerbeteiligung), <em>Throughput-Legitimität</em> (Prozessqualität/Transparenz), <em>Output-Legitimität</em> (Gemeinwohlorientierung).
+        <br>Für Protokolle besonders: Legitimität kann nicht allein durch Verfahren hergestellt werden — sie hängt von der Akzeptanz der Betroffenen ab.
+      </div>
+      <div class="quote-block blue">
+        „Legitimacy thus begins where the law morally reflects on and examines the conditions of its own validity."
+        <div class="quote-source">① S. 11</div>
+      </div>
+      <div class="distinction-box">
+        <strong>Vitalik Buterin:</strong> Legitimität als «the most important scarce resource» — spieltheoretische Beschreibung sozialen Verhaltens: bestimmte Verhaltensweisen werden akzeptiert, andere sanktioniert.
+      </div>
+    </div>
+
+    <div class="concept-card">
+      <div class="concept-number">06 / C</div>
+      <div class="concept-de">Alegality</div>
+      <div class="concept-en">Alegality · outside law ①</div>
+      <div class="concept-def">
+        Weder legal noch illegal — jenseits der binären Einteilung. Existiert außerhalb dominanter Rechtssysteme und Rechtsentstehungsprozesse. Ausdruck einer Fremdheit (Waldenfels). Grundlage für die Entstehung neuer, souveräner Rechtsformen.
+      </div>
+      <div class="quote-block">
+        „Alegality cannot be reduced to the binary division of legal/illegal. Alegality exists outside of dominant legal systems and processes of law formation […] and is thus an expression of a certain foreignness."
+        <div class="quote-source">① S. 13 — Hamzić 2017</div>
+      </div>
+      <div class="distinction-box">
+        <strong>Legalität</strong> → bestehende Regeln befolgen<br>
+        <strong>Legitimität</strong> → normative Akzeptanz<br>
+        <span class="b">Alegality</span> → neuer souveräner Rechtsraum jenseits beider
+      </div>
+      <div class="tags"><span class="tag red">Neuer Rechtsraum</span><span class="tag">Hamzić 2017</span><span class="tag">Lindahl</span></div>
+    </div>
+
+    <div class="concept-card">
+      <div class="concept-number">06 / D</div>
+      <div class="concept-de">Protocoloclasm</div>
+      <div class="concept-en">Protocoloclasm · ①</div>
+      <div class="concept-def">
+        Analogie zur Ikonoklasmus-Forschung: der Bruch mit bestehenden technischen, bürokratischen und anderen Protokollen. Ziel: ihre Herrschaft über Denken und Handeln sichtbar machen und dezentralisieren. «Protocolism» als Bruch, um neue Formen zu ermöglichen.
+      </div>
+      <div class="quote-block">
+        „The term 'protocolism' then refers to the break with technical, bureaucratic, and other current protocols in order not only to make their power over thought and action visible, but also to decentralize them for the future."
+        <div class="quote-source">① S. 22</div>
+      </div>
+      <div class="tags"><span class="tag red">Ikonoklasmus-Analogie</span><span class="tag">Zerstörung</span><span class="tag blue">Emanzipation</span></div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- 7. EXTITUTION                            -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="divider"><div class="divider-line"></div><div class="divider-text">Institution &amp; Jenseits</div><div class="divider-line"></div></div>
+
+  <div id="extitution">
+    <div class="section-label">Begriff 07</div>
+    <div class="section-title">Extitution</div>
+  </div>
+
+  <div class="concept-grid">
+    <div class="concept-card" style="grid-column: span 2;">
+      <div class="concept-number">07</div>
+      <div class="concept-de">Extitution</div>
+      <div class="concept-en">Extitution · Spicer 2010 · ①</div>
+      <div class="concept-def" style="max-width: 800px;">
+        Begriff von André Spicer: informelle Handlungen, die nicht von Institutionen abgedeckt werden und außerhalb regulatorischer Systeme liegen. Institutionen tendieren dazu, Extitutions-Elemente zu institutionalisieren — daher Widerstand notwendig, damit neue Institutionen entstehen können.
+      </div>
+      <div class="quote-block green" style="max-width: 800px;">
+        „The economic and organizational scientist André Spicer proposed the term 'extitution' to describe informal actions that are not covered by institutions and thus lie outside regulatory systems."
+        <div class="quote-source">① S. 15 — Spicer 2010, S. 30</div>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px;">
+        <div class="distinction-box">
+          <strong>Institution (Zentrum):</strong><br>
+          Nutzungsbedingungen, AGB, formale Regeln, Sanktionsmechanismen. Normative Tendenz. Zentralisierte Perspektive.
+        </div>
+        <div class="distinction-box" style="border-left: 3px solid #5ab0e8;">
+          <span class="b">Extitution (Peripherie):</span><br>
+          Emergente Gemeinschaften, informelle Begegnungen, gegenseitige Anerkennung, organisierende Dynamik von unten.
+        </div>
+      </div>
+      <div class="quote-block" style="max-width: 800px; margin-top: 16px;">
+        „Precisely because the extitution perspective focuses on the emerging communities, it can distinguish between the respective protocol forms of different platforms independently of the normative ideas of existing sovereignties."
+        <div class="quote-source">① S. 15</div>
+      </div>
+      <div class="tags">
+        <span class="tag green">Spicer 2010</span>
+        <span class="tag">Waldenfels</span>
+        <span class="tag">Phänomenologie</span>
+        <span class="tag red">Widerstand</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- 8. VIBE / WORLDING                       -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="divider"><div class="divider-line"></div><div class="divider-text">Affektive Dimension</div><div class="divider-line"></div></div>
+
+  <div id="vibe">
+    <div class="section-label">Begriff 08</div>
+    <div class="section-title">Vibe · Worlding · Atmosphäre</div>
+  </div>
+
+  <div class="concept-grid">
+
+    <div class="concept-card">
+      <div class="concept-number">08 / A</div>
+      <div class="concept-de">Vibe</div>
+      <div class="concept-en">Vibe as Protocol Atmosphere · ①</div>
+      <div class="concept-def">
+        Begriff von Nadia Asparouhova (Summer of Protocols): die affektive Dimension des Protokolls. Phänomenologisch: eine Atmosphäre mit Vergänglichkeit, räumlicher Diffusheit, affektiver Dichte. Nicht rational, sondern erfahrungsbasiert.
+      </div>
+      <div class="quote-block">
+        „The vibe is understood as a mood, a feeling, or an affective charge."
+        <div class="quote-source">① S. 17 — Gilli 2023, S. 40</div>
+      </div>
+      <div class="quote-block">
+        „The vibe is not only spatial, but also temporal: atmospheres […] react not only to external changes (e.g., light or sounds), but also to an internal dynamic: they arise, intensify, and then fade away."
+        <div class="quote-source">① S. 18</div>
+      </div>
+      <div class="distinction-box">
+        <strong>Situation</strong> = geordneter Kontext von Dingen (Architektur, soziale Normen)<br>
+        <span class="b">Vibe/Atmosphäre</span> = ephemer, kann provoziert aber nicht geplant werden; entsteht <em>aus</em> Situationen
+      </div>
+    </div>
+
+    <div class="concept-card">
+      <div class="concept-number">08 / B</div>
+      <div class="concept-de">Worlding</div>
+      <div class="concept-en">Worlding · Friend / Cheng ①</div>
+      <div class="concept-def">
+        Begriff von Ian Cheng (2019), angewandt auf Protokolle von Sarah Friend: Protokolle sind lebendig, wenn sie Welten schaffen — bevölkert von Nutzern, die ähnliche Interessen teilen, Enthusiasmus und Energie investieren. Protokolle sterben, wenn diese Welt aufhört zu existieren.
+      </div>
+      <div class="quote-block green">
+        „Protocols are alive when they create worlds populated by other players and users who are interested in similar things, share an enthusiasm, and are willing to invest time, money, emotions, and energy, thus transforming a media-technical infrastructure into a social space."
+        <div class="quote-source">① S. 17</div>
+      </div>
+      <div class="quote-block green">
+        „[Para-protocol activities]: online forums, informal community discussions, online events, memes, and Let's Plays play a significant role in the collective creation, dissemination, and use of meaning."
+        <div class="quote-source">① S. 17</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- 9. CHIASM                                -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="divider"><div class="divider-line"></div><div class="divider-text">Synthese</div><div class="divider-line"></div></div>
+
+  <div id="chiasm">
+    <div class="section-label">Begriff 09</div>
+    <div class="section-title">Der protokologische Chiasm</div>
+  </div>
+
+  <div class="chiasm-wrapper">
+    <div class="chiasm-side">
+      <div class="chiasm-label r">SOUVERÄNITÄT (A)</div>
+      <div class="chiasm-desc">Protokologische Eigenlogik,<br>die sich keinem Akteur unterwirft</div>
+      <br>
+      <div class="chiasm-label" style="color:#8aba4e; font-size:18px">abstraktes Muster (a)</div>
+      <div class="chiasm-desc">Schriftliche Notation,<br>Regelwerk, Spezifikation</div>
+    </div>
+    <div class="chiasm-center">
+      <div class="chi-symbol">χ</div>
+      <p>Protocological<br>Chiasm</p>
+      <p style="margin-top:8px; color:#555">Merleau-Ponty 1968<br>Bennke &amp; Schneider 2025</p>
+    </div>
+    <div class="chiasm-side">
+      <div class="chiasm-label b">ENTANGLEMENT (B)</div>
+      <div class="chiasm-desc">Verflechtung mit Teilnehmern,<br>Legitimität durch Adoption</div>
+      <br>
+      <div class="chiasm-label" style="color: #ff8060; font-size:18px">verkörperte Aufführung (b)</div>
+      <div class="chiasm-desc">Körperliche Praxis,<br>situated performance</div>
+    </div>
+  </div>
+
+  <div class="concept-grid">
+    <div class="concept-card" style="grid-column: span 2;">
+      <div class="concept-number">09</div>
+      <div class="concept-de">Protokologischer Chiasm</div>
+      <div class="concept-en">Protocological Chiasm · Merleau-Ponty / Bennke &amp; Schneider ②</div>
+      <div class="concept-def" style="max-width: 860px;">
+        Maurice Merleau-Pontys Chiasm beschreibt den Übergang vom Selbst zur Welt in einer Philosophie der Sinneswahrnehmung. Bennke &amp; Schneider übertragen ihn auf die Protokoll-Governance: vier Elemente kreuzen sich — Souveränität (A), Entanglement (B), abstraktes Muster (a) und verkörperte Aufführung (b). Die Elemente sind <em>irreduzibel</em> aufeinander und asymmetrisch.
+      </div>
+      <div class="quote-block blue" style="max-width: 860px;">
+        „Protocological governance becomes possible when a patterned interaction is sufficiently sovereign to resist capture but also sufficiently entangled to be legitimate and to operate according to a logic not reducible to any of its participants."
+        <div class="quote-source">② S. 26</div>
+      </div>
+      <div class="quote-block blue" style="max-width: 860px;">
+        „Protocological governance describes a generative dynamic of protocols capable of developing new forms of organizing the social, of living together and of the sensual world, with which they are intertwined."
+        <div class="quote-source">② S. 32</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- 10. VERGLEICHSTABELLE                    -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="divider"><div class="divider-line"></div><div class="divider-text">Synopse</div><div class="divider-line"></div></div>
+
+  <div id="vergleich" class="comparison-section">
+    <div class="section-label">Synoptische Übersicht</div>
+    <div class="section-title">Begriffe im Vergleich — präzise Unterschiede</div>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Dimension</th>
+          <th class="h-red">① Media Theory of Protocols</th>
+          <th class="h-blue">② Protocological Governance</th>
+          <th>Präziser Unterschied</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Grunddefinition Protokoll</td>
+          <td>4-Elemente-Modell (operativ, regelbasiert, extitutionell, weltbildend); medientheoretisch</td>
+          <td>«Pattern that organizes modes of interaction among agents»; governance-orientiert</td>
+          <td>① phänomenologisch-medientheoretisch; ② schlichter, governance-fokussiert</td>
+        </tr>
+        <tr>
+          <td>Souveränität</td>
+          <td>Digitale Souveränität + «felt belonging»; affektive Bindung</td>
+          <td>Protocological sovereignty = Widerstand gegen Capture; entkoppelt vom Nationalstaat</td>
+          <td>① affektiv-kulturell; ② strukturell-politisch</td>
+        </tr>
+        <tr>
+          <td>Kontrolle vs. Emanzipation</td>
+          <td>Galloway-Kritik: Kontrolle verschleiert emanzipatorisches Potential</td>
+          <td>Galloway als Ausgangspunkt; ergänzt um Widerstandspraktiken</td>
+          <td>① rehabilitiert das Emanzipatorische stärker; ② analysiert Gleichgewicht</td>
+        </tr>
+        <tr>
+          <td>Legalität</td>
+          <td>Dreiteilung: Legalität / Legitimität / Alegality</td>
+          <td>Souveräne Logik vs. untergeordnete Logik (protokologisch vs. nicht-protokologisch)</td>
+          <td>① rechtliche Kategorien; ② governance-Kategorien</td>
+        </tr>
+        <tr>
+          <td>Performativität</td>
+          <td>3 Modi: Ausführen, Setzen, Verwickeln (Choreografie)</td>
+          <td>Speech Acts; surplus through heterogeneous connection; embodied performance</td>
+          <td>① Choreografie als Metapher (Körper/Maschinen); ② Austin/Bourdieu</td>
+        </tr>
+        <tr>
+          <td>Entanglement</td>
+          <td>Implizit (Extitution, Choreografie, Vibe)</td>
+          <td>Zentralbegriff: konstitutiv, relata folgen Relationen; Risikovektor für Capture</td>
+          <td>Explizit nur in ②; ① verwendet analoge Konzepte</td>
+        </tr>
+        <tr>
+          <td>Affektive Dimension</td>
+          <td>Vibe, Worlding, Atmosphäre, para-protocol activities</td>
+          <td>Affektive Werte (Freiheit, Sicherheit) als Teil des chiasm; «felt belonging» kurz</td>
+          <td>① viel ausführlicher; Vibe als eigenständiger Analysebegriff</td>
+        </tr>
+        <tr>
+          <td>Capture</td>
+          <td>Nicht explizit; Plattformkapitalismus als Kontext</td>
+          <td>Zentraler Analysebegriff: regulatorische Capture + weiter gefasste soziale Capture</td>
+          <td>Capture als Begriff nur in ②</td>
+        </tr>
+        <tr>
+          <td>Chiasm</td>
+          <td>Nicht verwendet</td>
+          <td>Schlüsselbegriff der Schlussthese: Souveränität ↔ Entanglement ↔ Abstraktion ↔ Körper</td>
+          <td>Nur in ②</td>
+        </tr>
+        <tr>
+          <td>Historische Beispiele</td>
+          <td>Blockchain (Autonomous Forest), Galloway, Kulturechniken</td>
+          <td>Franziskaner, indigener Synkretismus (Our Lady of Guadalupe), Uruk, Email</td>
+          <td>② breiter historisch; ① kunstorientierter</td>
+        </tr>
+        <tr>
+          <td>Indigene Protokolle</td>
+          <td>Erwähnt (Lewis 2020); Emanzipation, Widerstand gegen Kolonialismus</td>
+          <td>Ausführlicher: Deloria, Coulthard, «concealing protocols», Rubis/Theriault</td>
+          <td>② differenzierter in der Indigenen Theorie</td>
+        </tr>
+        <tr>
+          <td>Methode</td>
+          <td>Medientheorie; 4-Elemente-Heuristik</td>
+          <td>Konzeptuelle Analyse + historische Fallstudien; Chiasm als Synthese</td>
+          <td>① systematisierender; ② fallbasierter</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</main>
+
+<footer>
+  <strong>Quellen:</strong> &nbsp;
+  ① Johannes Bennke: <em>Media Theory of Protocols</em>. In: Handbook of Media Theories in the 21st Century, Springer 2026. &nbsp;|&nbsp;
+  ② Johannes Bennke &amp; Nathan Schneider: <em>Protocological Governance: Between Sovereignty and Entanglement</em>. Navigationen 25(1), 2025, S. 15–40. DOI: 10.25819/ubsi/10661. &nbsp;|&nbsp;
+  ③ Johannes Bennke: <em>Medientheorie der Protokolle</em>. Deutsche Fassung (2026). &nbsp;
+  <br style="margin-top:8px">
+  Erstellt für wissenschaftliche Analyse · Alle Zitate mit Seitenangaben und Fundstellen
+</footer>
+
+</body>
+</html>
